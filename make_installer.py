@@ -46,6 +46,10 @@ def main():
 
     if platform.system() == "Darwin":
         print("\n[5/5] Creating .dmg Installer for Mac...")
+        
+        # Hapus atribut karantina (quarantine) dari Mac agar aplikasi tidak dianggap "rusak" (damaged)
+        run_cmd('xattr -cr "dist/SmartWatcher.app"')
+
         dmg_staging = "dist/dmg_staging"
         os.makedirs(dmg_staging, exist_ok=True)
         run_cmd(f'cp -R "dist/SmartWatcher.app" "{dmg_staging}/"')

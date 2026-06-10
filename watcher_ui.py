@@ -53,12 +53,20 @@ root.attributes('-topmost', True)
 
 observer = None
 icon_instance = None
-watch_folder = os.path.expanduser("~\\Downloads")
-target_folder = os.path.expanduser("~\\Documents\\TargetFolder")
+watch_folder = os.path.expanduser("~/Downloads")
+target_folder = os.path.expanduser("~/Documents/TargetFolder")
 config_file = Path("watcher_config.txt")
 
 def load_config():
     global watch_folder, target_folder
+    if not os.path.exists('watcher_config.txt'):
+        with open('watcher_config.txt', 'w') as f:
+            import platform
+            if platform.system() == "Windows":
+                f.write(f"{os.path.expanduser('~')}\\Downloads\n{os.path.expanduser('~')}\\Documents\\TargetFolder")
+            else:
+                f.write(f"{os.path.expanduser('~')}/Downloads\n{os.path.expanduser('~')}/Documents/TargetFolder")
+    
     if config_file.exists():
         with open(config_file, 'r') as f:
             lines = f.read().splitlines()
@@ -152,17 +160,18 @@ if __name__ == "__main__":
     else:
         eel.init('web')
     
-    # Start tray in background
-    threading.Thread(target=setup_tray, daemon=True).start()
-    
-    try:
+    import platform
+    if platform.system() == "Darwin":
+        # MacOS: Hindari pystray karena memicu crash pada Main Thread + Eel Gevent.
+        # Biarkan Eel berjalan di main thread (blocking), dan aplikasi akan otomatis berhenti saat UI ditutup.
+        eel.start('index.html', size=(600, 480))
+    else:
+        # Windows: Gunakan pystray di background thread, dan Eel secara non-blocking
+        threading.Thread(target=setup_tray, daemon=True).start()
+        
         def handle_close(route, websockets):
-            pass # Mencegah eel melakukan sys.exit() secara otomatis
+            pass 
             
         eel.start('index.html', size=(600, 500), port=0, disable_cache=True, block=False, close_callback=handle_close)
-        # Keep the main thread alive indefinitely (gevent event loop)
         while True:
-            eel.sleep(1.0)
-    except Exception as e:
-        print(f"Error: {e}")
-        os._exit(0)
+            eel.sleep(1)
