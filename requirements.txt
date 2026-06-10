@@ -1,0 +1,6 @@
+watchdog
+pystray
+Pillow
+eel
+PyPDF2
+python-docx

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Auto Watcher</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="background-blobs">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+    </div>
+
+    <div class="glass-card">
+        <div class="header">
+            <div class="status-indicator" id="status-dot"></div>
+            <h1>Auto Watcher</h1>
+        </div>
+        
+        <p class="subtitle">Automatically moves your downloaded files directly to your target folder.</p>
+
+        <div class="config-section">
+            <div class="input-group">
+                <label>Watch Folder</label>
+                <div class="path-display" id="watch-path">Loading...</div>
+            </div>
+
+            <div class="input-group">
+                <label>Target Folder (Destination)</label>
+                <div class="flex-row">
+                    <div class="path-display flex-grow" id="target-path">Loading...</div>
+                    <button class="btn-icon" onclick="selectFolder()" title="Change Folder">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="action-section">
+            <button id="toggle-btn" class="btn-primary" onclick="toggleWatcher()">Start Watcher</button>
+            <p class="hint">Saat Watcher berjalan, kamu bisa menutup jendela ini (X). Aplikasi akan tetap hidup di background (System Tray).</p>
+            <button class="btn-primary" style="background: transparent; border: 1px solid var(--danger); color: var(--danger); margin-top: 5px;" onclick="exitApp()">Exit Application Completely</button>
+        </div>
+    </div>
+
+    <script type="text/javascript" src="/eel.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

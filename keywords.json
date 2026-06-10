@@ -1,0 +1,42 @@
+{
+  "Work": [
+    "laporan", "kerja", "work", "invoice", "cv", "resume", "project",
+    "meeting", "rapat", "proposal", "kontrak", "contract", "client",
+    "klien", "dokumen", "document", "presentasi", "presentation", "brief",
+    "timeline", "jadwal", "surat", "letter", "memo", "perjanjian",
+    "kantor", "divisi", "manajer", "staff", "karyawan", "perusahaan", "pt", "cv", "corp",
+    "bisnis", "business", "marketing", "sales", "hrd", "operasional", "kpi"
+  ],
+  "Education": [
+    "tugas", "kuliah", "sekolah", "skripsi", "jurnal", "makalah",
+    "tesis", "disertasi", "materi", "buku", "book", "ebook", "modul",
+    "syllabus", "silabus", "ujian", "exam", "quiz", "kuis", "catatan",
+    "notes", "paper", "research", "penelitian", "praktikum",
+    "dosen", "guru", "siswa", "mahasiswa", "kampus", "universitas", "fakultas",
+    "semester", "uts", "uas", "sbmptn", "pelajaran"
+  ],
+  "Finance": [
+    "struk", "tagihan", "pajak", "tax", "bill", "receipt", "keuangan",
+    "finance", "bank", "transfer", "mutasi", "rekening", "saldo",
+    "budget", "anggaran", "pengeluaran", "pemasukan", "income",
+    "expense", "slip gaji", "payroll", "asuransi", "insurance", "kredit"
+  ],
+  "Personal": [
+    "pribadi", "personal", "keluarga", "family", "liburan", "foto",
+    "diary", "jurnal_pribadi", "kesehatan", "health", "medical",
+    "resep", "recipe", "identitas", "ktp", "passport", "paspor",
+    "kartu keluarga", "visa"
+  ],
+  "Digital Assets": [
+    "design", "desain", "mockup", "figma", "psd", "photoshop", "illustrator",
+    "vektor", "vector", "logo", "asset", "ui", "ux", "template", "wireframe",
+    "movie", "film", "anime", "music", "lagu", "mp3", "video", "clip",
+    "podcast", "episode", "season", "subtitle", "srt", "audio", "soundtrack",
+    "setup", "install", "update", "driver", "windows", "linux", "macos",
+    "app", "aplikasi", "software", "program", "tool", "utility", "installer"
+  ],
+  "Archives": [
+    "backup", "archive", "arsip", "kumpulan", "cadangan", "bundle", "pack",
+    "dump"
+  ]
+}

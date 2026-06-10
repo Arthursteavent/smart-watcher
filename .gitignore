@@ -1,0 +1,24 @@
+# Lingkungan Virtual & Dependensi
+build_env/
+venv/
+env/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# File Hasil Build (PyInstaller dll)
+build/
+dist/
+*.spec
+*.exe
+*.app
+*.dmg
+
+# File Konfigurasi Lokal
+watcher_config.txt
+
+# Mac OS & Editor
+.DS_Store
+.vscode/
+.idea/
