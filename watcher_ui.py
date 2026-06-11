@@ -164,7 +164,13 @@ if __name__ == "__main__":
     if platform.system() == "Darwin":
         # MacOS: Hindari pystray karena memicu crash pada Main Thread + Eel Gevent.
         # Biarkan Eel berjalan di main thread (blocking), dan aplikasi akan otomatis berhenti saat UI ditutup.
-        eel.start('index.html', size=(600, 480))
+        try:
+            w, h = 600, 480
+            x = (root.winfo_screenwidth() // 2) - (w // 2)
+            y = (root.winfo_screenheight() // 2) - (h // 2)
+            eel.start('index.html', size=(w, h), position=(x, y))
+        except:
+            eel.start('index.html', size=(600, 480))
     else:
         # Windows: Gunakan pystray di background thread, dan Eel secara non-blocking
         threading.Thread(target=setup_tray, daemon=True).start()
