@@ -140,11 +140,22 @@ def toggle_watcher():
         load_config()
         
         def notify_user(msg, title):
-            if icon_instance:
+            import platform
+            if platform.system() == "Darwin":
+                import subprocess
+                safe_msg = str(msg).replace('"', '\\"')
+                safe_title = str(title).replace('"', '\\"')
+                script = f'display notification "{safe_msg}" with title "{safe_title}"'
                 try:
-                    icon_instance.notify(msg, title)
+                    subprocess.run(['osascript', '-e', script])
                 except:
                     pass
+            else:
+                if icon_instance:
+                    try:
+                        icon_instance.notify(msg, title)
+                    except:
+                        pass
                     
         observer = start_watcher(watch_folder, target_folder, notify_user)
         return True
