@@ -9,14 +9,24 @@ async function loadConfig() {
     updateUI();
 }
 
+let isSelectingFolder = false;
+
 async function selectFolder() {
+    if (isSelectingFolder) return;
+    
     if (isRunning) {
         alert("Please stop the watcher before changing the target folder.");
         return;
     }
-    let newFolder = await eel.select_target_folder()();
-    if (newFolder) {
-        document.getElementById('target-path').innerText = newFolder;
+    
+    isSelectingFolder = true;
+    try {
+        let newFolder = await eel.select_target_folder()();
+        if (newFolder) {
+            document.getElementById('target-path').innerText = newFolder;
+        }
+    } finally {
+        isSelectingFolder = false;
     }
 }
 
