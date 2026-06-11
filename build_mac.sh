@@ -40,6 +40,8 @@ rm -rf build dist
 echo "Memperbaiki perizinan aplikasi Mac (xattr & chmod)..."
 xattr -cr "dist/SmartWatcher.app"
 chmod +x "dist/SmartWatcher.app/Contents/MacOS/SmartWatcher"
+echo "Menandatangani ulang aplikasi (codesign)..."
+codesign --force --deep --sign - "dist/SmartWatcher.app"
 
 # 5. Packaging into .dmg
 echo "[5/5] Packaging dist/SmartWatcher.dmg..."
