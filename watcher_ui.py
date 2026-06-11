@@ -95,12 +95,30 @@ def get_config():
 @eel.expose
 def select_target_folder():
     global target_folder
-    folder = filedialog.askdirectory(parent=root, title="Select Destination Folder")
-    if folder:
-        target_folder = folder
-        save_config()
-        return target_folder
-    return None
+    import platform
+    if platform.system() == "Darwin":
+        import subprocess
+        script = 'tell application "System Events" to activate\n' \
+                 'tell application "System Events" to set theFolder to choose folder with prompt "Select Destination Folder"\n' \
+                 'return POSIX path of theFolder'
+        try:
+            result = subprocess.run(['osascript', '-e', script], capture_output=True, text=True)
+            if result.returncode == 0:
+                folder = result.stdout.strip()
+                if folder:
+                    target_folder = folder
+                    save_config()
+                    return target_folder
+        except:
+            pass
+        return None
+    else:
+        folder = filedialog.askdirectory(parent=root, title="Select Destination Folder")
+        if folder:
+            target_folder = folder
+            save_config()
+            return target_folder
+        return None
 
 @eel.expose
 def is_watcher_running():
