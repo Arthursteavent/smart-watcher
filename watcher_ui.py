@@ -49,6 +49,13 @@ def create_image():
 # Hide root Tkinter window
 root = tk.Tk()
 root.withdraw()
+root.update_idletasks()
+try:
+    _x = (root.winfo_screenwidth() // 2) - 200
+    _y = (root.winfo_screenheight() // 2) - 150
+    root.geometry(f"+{_x}+{_y}")
+except:
+    pass
 root.attributes('-topmost', True)
 
 observer = None
