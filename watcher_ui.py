@@ -55,12 +55,12 @@ observer = None
 icon_instance = None
 watch_folder = os.path.expanduser("~/Downloads")
 target_folder = os.path.expanduser("~/Documents/TargetFolder")
-config_file = Path("watcher_config.txt")
+config_file = Path(os.path.expanduser("~")) / ".smart_watcher_config.txt"
 
 def load_config():
     global watch_folder, target_folder
-    if not os.path.exists('watcher_config.txt'):
-        with open('watcher_config.txt', 'w') as f:
+    if not config_file.exists():
+        with open(config_file, 'w') as f:
             import platform
             if platform.system() == "Windows":
                 f.write(f"{os.path.expanduser('~')}\\Downloads\n{os.path.expanduser('~')}\\Documents\\TargetFolder")
