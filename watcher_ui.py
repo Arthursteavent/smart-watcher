@@ -98,9 +98,12 @@ def select_target_folder():
     import platform
     if platform.system() == "Darwin":
         import subprocess
-        script = 'tell application "System Events" to activate\n' \
-                 'tell application "System Events" to set theFolder to choose folder with prompt "Select Destination Folder"\n' \
-                 'return POSIX path of theFolder'
+        script = 'set frontApp to (path to frontmost application as text)\n' \
+                 'tell application frontApp\n' \
+                 'activate\n' \
+                 'set theFolder to choose folder with prompt "Select Destination Folder"\n' \
+                 'return POSIX path of theFolder\n' \
+                 'end tell'
         try:
             result = subprocess.run(['osascript', '-e', script], capture_output=True, text=True)
             if result.returncode == 0:
